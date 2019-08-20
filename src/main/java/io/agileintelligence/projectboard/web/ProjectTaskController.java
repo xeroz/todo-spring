@@ -20,6 +20,17 @@ public class ProjectTaskController {
     @Autowired
     private ProjectTaskService projectTaskService;
 
+    @GetMapping("/all")
+    public Iterable<ProjectTask> getAllPTs(){
+        return projectTaskService.findAll();
+    }
+
+    @GetMapping("/pt_id")
+    public ResponseEntity<?> getPTById(@PathVariable Long pt_id){
+        ProjectTask projectTask = projectTaskService.findById(pt_id);
+        return new ResponseEntity<ProjectTask>(projectTask, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<?> addPTToBoard(@RequestBody ProjectTask projectTask, BindingResult result){
         if (result.hasErrors()){

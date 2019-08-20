@@ -31,6 +31,12 @@ public class ProjectTaskController {
         return new ResponseEntity<ProjectTask>(projectTask, HttpStatus.OK);
     }
 
+    @DeleteMapping("/id")
+    public ResponseEntity<?> deleteProjectTask(@PathVariable Long id){
+        projectTaskService.delete(id);
+        return new ResponseEntity<String>("Project Task delete", HttpStatus.OK);
+    }
+
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<?> addPTToBoard(@RequestBody ProjectTask projectTask, BindingResult result){
         if (result.hasErrors()){

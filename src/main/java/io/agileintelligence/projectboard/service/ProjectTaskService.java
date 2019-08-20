@@ -11,7 +11,7 @@ public class ProjectTaskService {
     @Autowired
     private ProjectTaskRepository projectTaskRepository;
 
-    public ProjectTask saveOrUpdateProjectTAsk(ProjectTask projectTask){
+    public ProjectTask saveOrUpdateProjectTask(ProjectTask projectTask){
 
         if (projectTask.getStatus() == null || projectTask.getStatus().equals("")){
             projectTask.setStatus("TO_DO");

@@ -20,9 +20,8 @@ public class ProjectTaskController {
     @Autowired
     private ProjectTaskService projectTaskService;
 
-    @PostMapping("")
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<?> addPTToBoard(@RequestBody ProjectTask projectTask, BindingResult result){
-
         if (result.hasErrors()){
             Map<String, String> errorMap = new HashMap<>();
 
@@ -33,7 +32,7 @@ public class ProjectTaskController {
             return new ResponseEntity<Map<String, String>>(errorMap, HttpStatus.BAD_REQUEST);
         }
 
-        ProjectTask newPT =  projectTaskService.saveOrUpdateProjectTAsk(projectTask);
+        ProjectTask newPT =  projectTaskService.saveOrUpdateProjectTask(projectTask);
         return new ResponseEntity<ProjectTask>(newPT, HttpStatus.CREATED);
     }
 }
